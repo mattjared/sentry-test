@@ -8,7 +8,7 @@ export default function Home() {
   const errorOnPurpose = () => {
     console.log('asdfasdf');
     try {
-      aFunctionThatMightFail();
+      aFunctionThatDoesNotExist();
     } catch (err) {
       Sentry.captureException(err);
     }
@@ -27,7 +27,6 @@ export default function Home() {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
         <button onClick={errorOnPurpose}>Break the world</button>
-
         <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.js</code>
