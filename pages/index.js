@@ -1,8 +1,18 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import * as Sentry from "@sentry/react";
 
 export default function Home() {
+
+  const errorOnPurpose = () => {
+    console.log('asdfasdf');
+    try {
+      aFunctionThatMightFail();
+    } catch (err) {
+      Sentry.captureException(err);
+    }
+  }
   return (
     <div className={styles.container}>
       <Head>
@@ -12,9 +22,11 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        <h1 className="text-3xl font-bold underline">as;fou</h1>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
+        <button onClick={errorOnPurpose}>Break the world</button>
 
         <p className={styles.description}>
           Get started by editing{' '}
