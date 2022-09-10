@@ -6,9 +6,8 @@ import * as Sentry from "@sentry/react";
 export default function Home() {
 
   const errorOnPurpose = () => {
-    console.log('asdfasdf');
     try {
-      aFunctionThatDoesNotExist();
+      aFunctionThatWillErr();
     } catch (err) {
       Sentry.captureException(err);
     }
