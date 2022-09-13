@@ -23,7 +23,7 @@ export default function Home() {
   // }, [showErrorCard]);
   return (
     <>
-      <Card headline="Scores" text="Hey team, click the button below to throw an error."  >
+      <Card headline="Standings" text="Hey team, click the button below to throw an error."  >
         <Button text="Get Data" />
       </Card>
       
