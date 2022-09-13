@@ -1,35 +1,51 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
 import * as Sentry from "@sentry/react";
+import Card from "./components/Card";
+import Button from "./components/Button";
+import  { useEffect, useState } from 'react';
+import Link from "next/link";
 
 export default function Home() {
+  const [showErrorCard, setShowErrorCard] = useState(false);
 
   const errorOnPurpose = () => {
+    setShowErrorCard(true);
     try {
       aFunctionThatWillErr();
     } catch (err) {
       Sentry.captureException(err);
+      Sentry.captureMessage(`${err} error thrown at ${new Date().toUTCString()}`);
     }
   }
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowErrorCard(false);
+    }, 30000);
+    return () => clearTimeout(timer);
+  }, [showErrorCard]);
   return (
-    <div className="body-bg min-h-screen pt-20 pb-6 px-2 ">
-      <header class="max-w-lg mx-auto">
-        <a href="#">
-          <h1 class="text-4xl font-bold text-white text-center">👋🏻 Hello Sentry Team!</h1>
-        </a>
-      </header>
-      <main class="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl flex">
-        <section>
-          <h3 class="font-bold text-2xl pb-5">💯 Sentry React Test</h3>
-          <button class="bg-purple-600 blog hover:bg-purple-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200" type="submit">Throw Sentry Error</button>
-        </section>          
-      </main>
-      <footer class="max-w-lg mx-auto flex justify-center text-white">
-        <a href="#" class="hover:underline">Contact</a>
-        <span class="mx-3">•</span>
-        <a href="#" class="hover:underline">Privacy</a>
-      </footer>
-    </div>
+    <>
+      <Card headline="Part 1" text="Hey team, click the button below to throw an error."  >
+        <Button text="Throw Sentry Error" funcProp={errorOnPurpose} />
+        {showErrorCard && (
+          <div className="p-4 mt-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800" role="alert">
+            <p>A Sentry error was thrown
+              <Link href="https://sentry.io/organizations/friday-software/issues/" passHref>
+                <a target="_blank" className="font-bold hover:underline">check it out here</a>
+              </Link>
+            </p>
+          </div>
+        )}
+      </Card>
+      <Card headline="Part 2" text="Check out some other pages to see performance monitoring">
+        <div className="text-center	font-bold text-xl">
+          <Link href="/scores">
+            <a className="text-violet-700 mr-6 hover:underline">Scores</a>
+          </Link>
+          <Link href="/odds">
+            <a className="text-fuchsia-700 ml-6 hover:underline">Odds</a>
+          </Link>
+        </div>
+      </Card>
+    </>
   )
 }
