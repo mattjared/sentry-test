@@ -38,11 +38,11 @@ export default function Home() {
       </Card>
       <Card headline="Part 2" text="Check out some other pages to see performance monitoring">
         <div className="text-center	font-bold text-xl">
-          <Link href="/scores">
-            <a className="text-violet-700 mr-6 hover:underline">Scores</a>
+          <Link href="/posts">
+            <a className="text-violet-700 mr-6 hover:underline">Posts</a>
           </Link>
-          <Link href="/odds">
-            <a className="text-fuchsia-700 ml-6 hover:underline">Odds</a>
+          <Link href="/photos">
+            <a className="text-fuchsia-700 ml-6 hover:underline">Photos</a>
           </Link>
         </div>
       </Card>
