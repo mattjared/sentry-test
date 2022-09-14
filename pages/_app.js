@@ -9,10 +9,11 @@ Sentry.init({
   tracesSampleRate: 1.0,
 });
 
-export default function MyApp({ Component, pageProps }) {
+export function MyApp({ Component, pageProps }) {
   return (
     <Layout>
       <Component {...pageProps} />
     </Layout>
   )
 }
+export default Sentry.withProfiler(MyApp);

@@ -9,12 +9,12 @@ export default function Header() {
           <a className="hover:underline">Home</a>
         </Link>
         <span className="mx-3">•</span>
-        <Link href="/scores" >
-          <a className="hover:underline">Scores</a>
+        <Link href="/posts" >
+          <a className="hover:underline">Posts</a>
         </Link>
         <span className="mx-3">•</span>
-        <Link href="/standings">
-          <a className="hover:underline">Standings</a>
+        <Link href="/photos">
+          <a className="hover:underline">Photos</a>
         </Link>
       </nav>
     </header>

@@ -30,7 +30,7 @@ export default function Home() {
           <div className="p-4 mt-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800" role="alert">
             <p>A Sentry error was thrown
               <Link href="https://sentry.io/organizations/friday-software/issues/" passHref>
-                <a target="_blank" className="font-bold hover:underline">check it out here</a>
+                <a target="_blank" className="font-bold hover:underline">{" "}check it out here</a>
               </Link>
             </p>
           </div>
